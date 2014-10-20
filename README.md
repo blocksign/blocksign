@@ -15,39 +15,39 @@ A `BlockSign Output` can be created the following way (with example):
 
 1. First the document being signed is hashed using double sha256.
 
-```
-3fc4a2721876cec0389049f57c6c8fe8604129a0885368a713fdf94dd79a77e0
-```
+  ```
+  3fc4a2721876cec0389049f57c6c8fe8604129a0885368a713fdf94dd79a77e0
+  ```
 
 2. The magic marker (```0x42 0x53``` for MainNet and ```0xBA 0xBA``` for TestNet3) is prepended in front of the hash:
 
-```
-42 53 3fc4a2721876cec0389049f57c6c8fe8604129a0885368a713fdf94dd79a77e0
-```
+  ```
+  42 53 3fc4a2721876cec0389049f57c6c8fe8604129a0885368a713fdf94dd79a77e0
+  ```
 
 3. The hash (double sha256) of the data from step 2 is calculated.
 
-```
-5acf07b5d55e60f647e84eb40c9ffcadceeed007fac1ef3a9018496a58638e74
-```
+  ```
+  5acf07b5d55e60f647e84eb40c9ffcadceeed007fac1ef3a9018496a58638e74
+  ```
 
 4. The first 4 bytes of the hash from step 3 is the checksum.
-
-```
-5acf07b5
+  
+  ```
+  5acf07b5
 ```
 
 5. The first 4 bytes of the hash from step 3 is appended to the string from step 2, as a checksum.
 
-```
-42 53 3fc4a2721876cec0389049f57c6c8fe8604129a0885368a713fdf94dd79a77e0 5acf07b5
-```
+  ```
+  42 53 3fc4a2721876cec0389049f57c6c8fe8604129a0885368a713fdf94dd79a77e0 5acf07b5
+  ```
 
 6. The resulting 38 byte string is embedded in the `ScriptPubKey` using `OP_RETURN`.
 
-```
-OP_RETURN 42533fc4a2721876cec0389049f57c6c8fe8604129a0885368a713fdf94dd79a77e05acf07b5
-```
+  ```
+  OP_RETURN 42533fc4a2721876cec0389049f57c6c8fe8604129a0885368a713fdf94dd79a77e05acf07b5
+  ```
 
 
 
